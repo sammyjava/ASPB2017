@@ -29,9 +29,14 @@
 
 % Carnegie colors
 \definecolor{CarnegiePriBlue}{cmyk}{1.00,0.85,0.15,0.25}  % main primary blue
-\definecolor{CarnegiePriTurq}{cmyk}{0.60,0.10,0.15,0.00}  % alternative primary
-\definecolor{CarnegiePriGreen}{cmyk}{0.46,0.00,0.90,0.00} % alternative primary
-\definecolor{CarnegiePriBrown}{cmyk}{0.25,0.40,0.65,0.00} % alternative primary
+\definecolor{CarnegieSecBlue1}{cmyk}{0.68,0.48,0.00,0.00} % first secondary blue
+\definecolor{CarnegieSecBlue2}{cmyk}{0.85,0.69,0.04,0.00} % second secondary blue
+
+\definecolor{CarnegiePriTurq}{cmyk}{0.60,0.10,0.15,0.00}  % main primary turquoise
+
+\definecolor{CarnegiePriGreen}{cmyk}{0.46,0.00,0.90,0.00} % main primary green
+
+\definecolor{CarnegiePriBrown}{cmyk}{0.25,0.40,0.65,0.00} % main primary brown
 
 % multiple columns
 \usepackage{multicol} % This is so we can have multiple columns of text side-by-side
@@ -57,8 +62,8 @@
 
 % tweak list spacing
 \usepackage{enumitem}
-\setlist[itemize]{topsep=12pt,itemsep=12pt,itemindent=48pt}
-\setlist[enumerate]{topsep=12pt,itemsep=12pt,itemindent=48pt}
+\setlist[itemize]{topsep=10pt,itemsep=8pt,itemindent=48pt}
+\setlist[enumerate]{topsep=10pt,itemsep=8pt,itemindent=48pt}
 
 % tweak paragraphs
 \setlength{\parindent}{0pt}
@@ -75,7 +80,7 @@
 \titlespacing{\subsection}{0pt}{1em}{1em}
 \titlespacing{\subsubsection}{0pt}{12pt}{0pt}
 \titleformat{\section}{\color{CarnegiePriBlue}\Large\bfseries}{\color{CarnegiePriBlue}\thesection}{1em}{}
-\titleformat{\subsection}{\color{CarnegiePriBlue}\large\bfseries}{\color{CarnegiePriBlue}\thesubsection}{1em}{}
+\titleformat{\subsection}{\color{CarnegieSecBlue1}\large\bfseries}{\color{CarnegieSecBlue1}\thesubsection}{1em}{}
 
 % tweak equation whitespace
 %% \abovedisplayskip=12pt plus 3pt minus 9pt
@@ -112,7 +117,7 @@
 }
 \vspace{5mm}
 
-\begin{minipage}[m]{0.10\linewidth}
+\begin{minipage}[m]{0.08\linewidth}
   \includegraphics[height=70mm]{sam-bfr-smiling-crop.jpg} % author photo
 \end{minipage}
 \begin{minipage}[m]{0.40\linewidth}                      % Author(s)
@@ -120,7 +125,7 @@
   \Huge \textbf{Sam Hokin \& M. Kathryn Barton} \\
   \Large shokin@carnegiescience.edu
 \end{minipage}
-\begin{minipage}[m]{0.50\linewidth}
+\begin{minipage}[m]{0.49\linewidth}
   \includegraphics[height=70mm]{CS_plantbio_logo_horz.eps} % Carnegie DPB logo
 \end{minipage}
 
@@ -166,21 +171,21 @@
     
     \textbf{The model quantifies an observed time course with two rate coefficients}:
     \begin{enumerate}
-    \item $\hat{\eta}_p$ -- the normalized initial rate of rise or fall of target mRNA levels
-    \item $\gamma_p$ -- the mRNA loss rate
+    \item $\hat{\eta}_p$ = the normalized initial rate of rise (+) or fall (-) of target mRNA levels
+    \item $\gamma_p$ = the mRNA loss rate
     \end{enumerate}
     \textbf{These two processes compete to determine the final transcript fold change:} a highly-induced transcript may saturate at a low fold change if it also decays quickly,
     while weakly-induced transcripts may rise to a high level if they have very low loss.
     
-    \textbf{In addition, some targets exhibit ``turn-off'', or auto-regulation}. These time courses require a turn-off time, $t_{off}$, after which the mRNA level decays exponentially.
+    \textbf{In addition, some targets exhibit ``turn-off'', or auto-regulation}. These time courses require a turn-off time, $t_{off}$, after which the mRNA level decays exponentially at $\gamma_p$.
     
     We present analysis of experiments with GR-TFs involved in leaf regulation:
     \begin{itemize}
-    \item AT1G62360 \textit{SHOOT MERISTEMLESS/STM}
-    \item AT1G65620 \textit{ASYMMETRIC LEAVES 2/AS2/LBD6}
-    \item AT5G16560 \textit{KANADI 1/KAN1}
-    \item AT5G25810 \textit{TINY}
-    \item AT5G60690 \textit{REVOLUTA/REV}
+    \item GR-STM: AT1G62360 \textit{SHOOT MERISTEMLESS/STM}
+    \item GR-AS2: AT1G65620 \textit{ASYMMETRIC LEAVES 2/AS2/LBD6}
+    \item GR-KAN: AT5G16560 \textit{KANADI 1/KAN1}
+    \item GR-TINY: AT5G25810 \textit{TINY}
+    \item GR-REV: AT5G60690 \textit{REVOLUTA/REV}
     \end{itemize}
     
     Our experiments measure expression time courses for up to two hours after DEX exposure with both RNA-seq and microarray assays.
@@ -261,20 +266,20 @@
   $\rho_p$ and $\rho_s$ are measured with microarray or RNA-seq assays. $\gamma_p$ and  $\gamma_s$ represent loss of mRNA due to translation into proteins or other mechanisms. We assume that the concentration
   of primary target protein is proportional to $\rho_p$ so that $\rho_p$ can be used directly in the equation driving $\rho_s$ (eliminating an extra translation rate parameter).
 
-  These equations can be solved analytically, and we assume $\gamma_n=0$ throughout, and set $\nu=10~{\rm h}^{-1}$, based on the animal tissue studies (we need to measure it!).
+  These equations can be solved analytically, and we assume $\gamma_n=0$ throughout, and set $\nu=10 {\rm h}^{-1}$, based on the animal tissue studies (we need to measure it!).
   
   \subsection*{Primary target transcription time course metrics}
 
   The model provides two useful, independent expression metrics:
   \begin{itemize}
-    \item $\hat{\eta}_p  = \eta_p \frac{\rho_n(0)}{\rho_p(0)}$ characterizes the initial change of mRNA level
+    \item $\hat{\eta}_p  = \eta_p \rho_n(0) / \rho_p(0)$ characterizes the initial change of mRNA level
     \item $\gamma_p$ characterizes the loss of mRNA
   \end{itemize}
   In addition, we can calculate an asymptotic ($t\rightarrow\infty$) fold change:
   \begin{equation*}
     {\rm logFC}_\infty \equiv \lim_{t \to \infty} \log_2\frac{\rho_p(t)}{\rho_p(0)} = \log_2\left(1 + \frac{\hat{\eta}_p}{\gamma_p} \frac{\rho_c(0)}{\rho_n(0)} \right)
   \end{equation*}
-  The ratio $\hat{\eta_p}/\gamma_p$ therefore determines the asymptotic fold change of a transcript: \textbf{mRNA transcription and loss play equal roles in the final transcript level}.
+  The ratio $\hat{\eta_p}/\gamma_p$ therefore determines the asymptotic fold change of a transcript: \textbf{mRNA transcription and loss play equal roles in the final transcript level in this model}.
 
   \subsection*{Time-course expression measurements in {\it Arabidopsis thaliana}}
 
@@ -289,29 +294,27 @@
 
   \section*{RESULTS}
 
-  \subsection*{Expression time courses fall into three categories}
+  \subsection*{Expression time courses exhibit qualitative variation}
 
+  \textbf{It matters greatly \underline{when} you measure differential expression in an induced expression experiment!}
+  
   \begin{center}\vspace{\figtopspace}
-    \includegraphics[width=\figwidth]{early-middle-late}
+    \includegraphics[width=\figwidth]{ZPR1-HAT4}
     \captionof{figure}{
-      Expression time courses fall into three categories: peak at 0.5 h (E), peak at 1.0 h (M) or peak at 2.0 h (L). Lines represent primary target model fits
-      with transcription turned off at $t=0.5$h for E courses and $t=1.0$h for M courses.
+      Expression time courses vary greatly, from strong GR-REV monotonic risers like \textit{ZPR1} to HD-ZIPII self-regulators like \textit{HAT4}. Lines represent primary target model fits
+      with transcription turned off at $t=0.5$ h for \textit{HAT4}.
     }
   \end{center}
 
-  We measured transcript levels at three positive time points, so we divide time courses into three categories:
-  \begin{itemize}
-  \item \textbf{E} (early), for which DE is maximum at $t=0.5$~h
-  \item \textbf{M} (middle), with maximum DE at $t=1$~h
-  \item \textbf{L} (late), with maximum DE at $t=2$~h
-  \end{itemize}
-
-  \subsection*{Model metrics $\kappa$ and ${\rm logFC}_{\infty}$ characterize expression time courses}
+  \subsection*{Model parameters $\hat{\eta}_p$ and $\gamma_p$ distinguish expression time course shapes}
   
   \begin{center}\vspace{\figtopspace}
-    \includegraphics[width=\figwidth]{asymptotes}
+    \includegraphics[width=\figwidth]{ZPR1-CPuORF8-PKS4}
     \captionof{figure}{
-      Expression time courses are characterized by two model-generated metrics: $\kappa$ quantifies initial change while $\rm logFC_\infty$ quantifies long-time DE.
+      Three distinct time course shapes result from:
+      high $\hat{\eta}_p$ and low $\gamma_p$ for \textit{ZPR1}, the most strongly regulated GR-REV target; 
+      low $\hat{\eta}_p$ and low $\gamma_p$ for \textit{CPuORF8}, which reaches a significant fold-change due to low loss;
+      and high $\hat{\eta}_p$ and high $\gamma_p$ for \textit{PKS4}, which saturates quickly due to high loss.
     }
   \end{center}
 

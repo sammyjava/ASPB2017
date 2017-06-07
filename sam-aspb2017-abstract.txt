@@ -1,0 +1,19 @@
+MODEL-BASED QUANTIFICATION OF INDUCED GENE EXPRESSION TIME COURSES
+
+Samuel Hokin, M. Kathryn Barton
+Carnegie Institution for Science Department of Plant Biology
+
+We present a model of gene expression time courses following induction of a glucocorticoid receptor-bound
+transcription factor into the nucleus after exposure to dexamethasone in Arabidopsis thaliana. As opposed
+to single-time measurements of induced expression, which result in a single "up" or "down" fold-change
+value at some point in time, typically long after the induction event, our model reproduces the dynamics
+of transcription factor transport into the nucleus followed by the transcriptional dynamics of its primary
+(direct) and secondary (indirect) targets. The model quantifies an observed time course with two rate
+coefficients: one quantifies the initial normalized rate of rise or fall of target mRNA levels, the other
+quantifies mRNA loss. These two processes compete to determine the final transcript fold change: a highly-
+induced transcript may saturate at a low fold change if it also decays quickly, while weakly induced
+transcripts may rise to a high level if they have very low loss. We present analysis of experiments with
+transcription factors involved in leaf regulation: ASYMMETRIC LEAVES 2, REVOLUTA, KANADI 1, SHOOT
+MERISTEMLESS and TINY. Since secondary targets of the induced transcription factor are expected to rise
+with some delay, during which the primary transcript's protein levels rise, we explore the use of our model
+to discern between primary and secondary target time courses. 
