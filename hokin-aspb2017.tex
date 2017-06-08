@@ -167,7 +167,7 @@
     \textbf{We model gene expression time courses following induction of a glucocorticoid receptor-bound transcription factor into the nucleus after exposure to dexamethasone in Arabidopsis thaliana.}
     
     In contrast to single-time measurements of induced expression, which result in a single fold-change value, typically long after the induction event,
-    our model reproduces the dynamics of TF translocation into the nucleus followed by the transcriptional dynamics of its direct and indirect targets.
+    our model reproduces the dynamics of TF import into the nucleus followed by the transcriptional dynamics of its direct and indirect targets.
     
     \textbf{The model quantifies an observed time course with two rate coefficients}:
     \begin{enumerate}
@@ -204,7 +204,7 @@
   {
     \setlist[enumerate]{itemindent=0pt}
     \begin{enumerate}
-    \item Model the translocation of the GR-TF into the nucleus after DEX exposure
+    \item Model the import of the GR-TF into the nucleus after DEX exposure
     \item Model the modified transcription of GR-TF primary targets (subscript $p$)
     \item Model the modified transcription of GR-TF secondary targets (subscript $s$), which are primary targets of GR-TF primary targets
     \item Compare the model-fitted rate coefficients with standard fold-change analysis
@@ -246,7 +246,8 @@
     \gamma_e &=& \text{nuclear export rate} \\
     \gamma_n &=& \text{rate of loss of GR-TF from other causes}
   \end{eqnarray*}
-  We neglect nuclear export since we measure over a time period $t \ll 1/\gamma_e$. We assume that import of chimeric GR-TF is similar to the published GR import data.
+  We neglect nuclear export and loss setting $\gamma_e=0$ and $\gamma_n=0$ since those rates are slow compared to our two-hour measurement span.
+  We assume that import of chimeric GR-TF is similar to the published GR import data.
 
   \subsection*{Transcription model}
 
@@ -256,21 +257,22 @@
     \dot{\rho_s} &=& \eta_s \rho_p  - \gamma_s \rho_s 
   \end{eqnarray*}
   \begin{eqnarray*}
-    \rho_p &=& \text{expressed mRNA of a primary target of the GR-TF} \\
-    \rho_s &=& \text{expressed mRNA of a secondary target of the GR-TF, i.e. target of a primary target} \\
-    \gamma_p &=& \text{loss rate of primary mRNA} \\
-    \gamma_s &=& \text{loss rate of secondary mRNA} \\
+    \rho_p &=& \text{expressed mRNA/protein of a primary target of the GR-TF} \\
+    \rho_s &=& \text{expressed mRNA/protein of a secondary target of the GR-TF, i.e. target of a primary target} \\
+    \gamma_p &=& \text{loss rate of primary mRNA/protein} \\
+    \gamma_s &=& \text{loss rate of secondary mRNA/protein} \\
     \eta_p &=& \text{transcription rate between the GR-TF and primary target} \\
     \eta_s &=& \text{transcription rate between the primary and secondary targets}
   \end{eqnarray*}
-  $\rho_p$ and $\rho_s$ are measured with microarray or RNA-seq assays. $\gamma_p$ and  $\gamma_s$ represent loss of mRNA due to translation into proteins or other mechanisms. We assume that the concentration
-  of primary target protein is proportional to $\rho_p$ so that $\rho_p$ can be used directly in the equation driving $\rho_s$ (eliminating an extra translation rate parameter).
+  We assume that mRNA and protein concentrations are in fixed proportion, so that $\rho_p$ and $\rho_s$ represent measured mRNA levels as well as protein concentration.
+  (This avoids two more equations and four more fit parameters accounting for translation.)
+  $\gamma_p$ and  $\gamma_s$ represent loss of mRNA.
 
-  These equations can be solved analytically, and we assume $\gamma_n=0$ throughout, and set $\nu=10 {\rm h}^{-1}$, based on the animal tissue studies (we need to measure it!).
+  These equations can be solved analytically, and set $\nu=10 {\rm h}^{-1}$ based on the animal tissue studies (we need to measure it!).
   
-  \subsection*{Primary target transcription time course metrics}
+  \subsection*{Primary target expression time course metrics}
 
-  The model provides two useful, independent expression metrics:
+  The model provides two useful, independent time course  metrics:
   \begin{itemize}
     \item $\hat{\eta}_p  = \eta_p \rho_n(0) / \rho_p(0)$ characterizes the initial change of mRNA level
     \item $\gamma_p$ characterizes the loss of mRNA
