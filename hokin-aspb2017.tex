@@ -164,10 +164,10 @@
     \titlespacing{\section}{0pt}{0pt}{0pt}
     \section*{INTRODUCTION}
 
-    \textbf{We model gene expression time courses following induction of a glucocorticoid receptor-bound transcription factor into the nucleus after exposure to dexamethasone in Arabidopsis thaliana.}
+    \textbf{We model gene expression time courses following induction of a glucocorticoid receptor-bound transcription factor into the nucleus following exposure to dexamethasone in Arabidopsis thaliana.}
     
-    In contrast to single-time measurements of induced expression, which result in a single fold-change value, typically long after the induction event,
-    our model reproduces the dynamics of TF import into the nucleus followed by the transcriptional dynamics of its direct and indirect targets.
+    In contrast to measurement of of induced expression at a single time, resulting in a single fold-change value typically long after the induction event,
+    we model the dynamics of TF import into the nucleus followed by the transcriptional dynamics of its direct and indirect targets.
     
     \textbf{The model quantifies an observed time course with two rate coefficients}:
     \begin{enumerate}
@@ -179,14 +179,12 @@
     
     \textbf{In addition, some targets exhibit ``turn-off'', or auto-regulation}. These time courses require a turn-off time, $t_{off}$, after which the mRNA level decays exponentially at $\gamma_p$.
     
-    We present analysis of experiments with GR-TFs involved in leaf regulation:
-    \begin{itemize}
-    \item GR-STM: AT1G62360 \textit{SHOOT MERISTEMLESS/STM}
-    \item GR-AS2: AT1G65620 \textit{ASYMMETRIC LEAVES 2/AS2/LBD6}
-    \item GR-KAN: AT5G16560 \textit{KANADI 1/KAN1}
-    \item GR-TINY: AT5G25810 \textit{TINY}
-    \item GR-REV: AT5G60690 \textit{REVOLUTA/REV}
-    \end{itemize}
+    We present analysis of experiments with GR-TFs involved in leaf regulation: 
+    \textit{SHOOT MERISTEMLESS/STM} (AT1G65620);
+    \textit{ASYMMETRIC LEAVES 2/AS2/LBD6} (AT1G65620);
+    \textit{KANADI 1/KAN1} (AT5G16560); 
+    \textit{REVOLUTA/REV} (AT5G60690); and 
+    \textit{TINY} (AT5G25810).
     
     Our experiments measure expression time courses for up to two hours after DEX exposure with both RNA-seq and microarray assays.
     Since secondary targets of the induced transcription factor are expected to rise after some delay, during which the primary transcript's protein level rises,
@@ -258,7 +256,7 @@
   \end{eqnarray*}
   \begin{eqnarray*}
     \rho_p &=& \text{expressed mRNA/protein of a primary target of the GR-TF} \\
-    \rho_s &=& \text{expressed mRNA/protein of a secondary target of the GR-TF, i.e. target of a primary target} \\
+    \rho_s &=& \text{expressed mRNA/protein of a secondary target of the GR-TF} \\
     \gamma_p &=& \text{loss rate of primary mRNA/protein} \\
     \gamma_s &=& \text{loss rate of secondary mRNA/protein} \\
     \eta_p &=& \text{transcription rate between the GR-TF and primary target} \\
@@ -281,7 +279,7 @@
   \begin{equation*}
     {\rm logFC}_\infty \equiv \lim_{t \to \infty} \log_2\frac{\rho_p(t)}{\rho_p(0)} = \log_2\left(1 + \frac{\hat{\eta}_p}{\gamma_p} \frac{\rho_c(0)}{\rho_n(0)} \right)
   \end{equation*}
-  The ratio $\hat{\eta_p}/\gamma_p$ therefore determines the asymptotic fold change of a transcript: \textbf{mRNA transcription and loss play equal roles in the final transcript level in this model}.
+  The ratio $\hat{\eta_p}/\gamma_p$ therefore determines the asymptotic fold change of a transcript: \textbf{mRNA transcription and loss play equal roles in the final transcript level}.
 
   \subsection*{Time-course expression measurements in {\it Arabidopsis thaliana}}
 
@@ -298,13 +296,13 @@
 
   \subsection*{Expression time courses exhibit qualitative variation}
 
-  \textbf{It matters greatly \underline{when} you measure differential expression in an induced expression experiment!}
+  \textbf{\underline{When} you measure DE in an induced expression experiment is important!}
   
   \begin{center}\vspace{\figtopspace}
     \includegraphics[width=\figwidth]{ZPR1-HAT4}
     \captionof{figure}{
       Expression time courses vary greatly, from strong GR-REV monotonic risers like \textit{ZPR1} to HD-ZIPII self-regulators like \textit{HAT4}. Lines represent primary target model fits
-      with transcription turned off at $t=0.5$ h for \textit{HAT4}.
+      with transcription turned off at t=30 mins for \textit{HAT4}. (\textit{HAT4} turn-off occurs some time between t=15 and 45 mins.)
     }
   \end{center}
 
@@ -313,12 +311,28 @@
   \begin{center}\vspace{\figtopspace}
     \includegraphics[width=\figwidth]{ZPR1-CPuORF8-PKS4}
     \captionof{figure}{
-      Three distinct time course shapes result from:
-      high $\hat{\eta}_p$ and low $\gamma_p$ for \textit{ZPR1}, the most strongly regulated GR-REV target; 
-      low $\hat{\eta}_p$ and low $\gamma_p$ for \textit{CPuORF8}, which reaches a significant fold-change due to low loss;
-      and high $\hat{\eta}_p$ and high $\gamma_p$ for \textit{PKS4}, which saturates quickly due to high loss.
+      Distinct time course shapes result from different transcription strength vs.\ loss rate for these GR-REV targets:
+      high $\hat{\eta}_p$, low $\gamma_p$ for \textit{ZPR1}, the most strongly regulated GR-REV target; 
+      low $\hat{\eta}_p$, low $\gamma_p$ for \textit{CPuORF8}, which reaches a significant fold-change due to low loss;
+      and high $\hat{\eta}_p$, high $\gamma_p$ for \textit{PKS4}, which saturates quickly due to high loss. (RNA-seq data.)
     }
   \end{center}
+
+  \subsection*{Down-regulation time courses are also well fit by the model}
+
+\begin{center}\vspace{\figtopspace}
+    \includegraphics[width=\figwidth]{At2g41250-NPF47}
+    \captionof{figure}{
+      \text{STM} has a number of strongly down-regulated targets; these two GR-STM targets are particularly well fit by the model. (RNA-seq data.)
+    }
+  \end{center}
+  
+
+
+
+
+
+  
 
   Three examples that exhibit very different transcriptional responses to DEX application:
   \begin{itemize}

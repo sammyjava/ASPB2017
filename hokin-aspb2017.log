@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2016.4.25)  7 JUN 2017 17:20
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2016.4.25)  9 JUN 2017 17:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -738,45 +738,17 @@ File: figures/CS_plantbio_logo_horz.eps Graphic file (type eps)
 File: figures/robertson-hache-yoshikawa.pdf Graphic file (type QTm)
 
 <use  "figures/robertson-hache-yoshikawa.pdf" >
-Overfull \hbox (1.69435pt too wide) in alignment at lines 258--265
- [][][] []
- []
-
 LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 288
 .
+
 (/usr/share/texlive/texmf-dist/tex/latex/euenc/eu1lmtt.fd
 File: eu1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 File: figures/ZPR1-HAT4.pdf Graphic file (type QTm)
 
 <use  "figures/ZPR1-HAT4.pdf" >
-LaTeX Font Info:    Calculating math sizes for size <22> on input line 306.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <22> not available
-(Font)              size <20.74> substituted on input line 306.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <15.39993> not available
-(Font)              size <14.4> substituted on input line 306.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <22> not available
-(Font)              size <20.74> substituted on input line 306.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <15.39993> not available
-(Font)              size <14.4> substituted on input line 306.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <22> not available
-(Font)              size <20.74> substituted on input line 306.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <15.39993> not available
-(Font)              size <14.4> substituted on input line 306.
-
 LaTeX Font Info:    Calculating math sizes for size <30> on input line 309.
+
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <15> not available
 (Font)              size <14.4> substituted on input line 309.
@@ -791,6 +763,34 @@ LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <15> not available
 
 File: figures/ZPR1-CPuORF8-PKS4.pdf Graphic file (type QTm)
 <use  "figures/ZPR1-CPuORF8-PKS4.pdf" >
+LaTeX Font Info:    Calculating math sizes for size <22> on input line 318.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <22> not available
+(Font)              size <20.74> substituted on input line 318.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <15.39993> not available
+(Font)              size <14.4> substituted on input line 318.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <22> not available
+(Font)              size <20.74> substituted on input line 318.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <15.39993> not available
+(Font)              size <14.4> substituted on input line 318.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <22> not available
+(Font)              size <20.74> substituted on input line 318.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <15.39993> not available
+(Font)              size <14.4> substituted on input line 318.
+
+File: figures/At2g41250-NPF47.pdf Graphic file (type QTm)
+<use  "figures/At2g41250-NPF47.pdf" >
 File: figures/hdzip.pdf Graphic file (type QTm)
  <use  "figures/hdzip.pdf" > [1
 
@@ -808,12 +808,12 @@ LaTeX Font Warning: Size substitutions with differences
 (\end occurred when \iffalse on line 101 was incomplete)
 (\end occurred when \iffalse on line 106 was incomplete) 
 Here is how much of TeX's memory you used:
- 17422 strings out of 493638
- 329801 string characters out of 6146796
- 376698 words of memory out of 5000000
- 20678 multiletter control sequences out of 15000+600000
+ 17424 strings out of 493638
+ 329847 string characters out of 6146796
+ 378698 words of memory out of 5000000
+ 20679 multiletter control sequences out of 15000+600000
  16014 words of font info for 98 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 48i,8n,61p,10527b,461s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 48i,8n,61p,10527b,455s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on hokin-aspb2017.pdf (2 pages).
