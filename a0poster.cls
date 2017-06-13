@@ -182,8 +182,8 @@
 \renewcommand{\scriptsize}{\fontsize{14}{18}\selectfont}   
 \renewcommand{\footnotesize}{\fontsize{18}{22}\selectfont}
 \renewcommand{\small}{\fontsize{22}{25}\selectfont}
-\renewcommand{\normalsize}{\fontsize{24}{30}\selectfont}
-\renewcommand{\large}{\fontsize{30}{37}\selectfont}
+\renewcommand{\normalsize}{\fontsize{28}{36}\selectfont} % was 24 30
+\renewcommand{\large}{\fontsize{32}{38}\selectfont}
 \renewcommand{\Large}{\fontsize{36}{45}\selectfont}
 \renewcommand{\LARGE}{\fontsize{43}{54}\selectfont}
 \renewcommand{\huge}{\fontsize{52}{64}\selectfont}

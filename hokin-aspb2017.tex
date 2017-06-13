@@ -63,7 +63,8 @@
 % tweak list spacing
 \usepackage{enumitem}
 \setlist[itemize]{topsep=10pt,itemsep=8pt,itemindent=48pt}
-\setlist[enumerate]{topsep=10pt,itemsep=8pt,itemindent=48pt}
+\setlist[enumerate]{topsep=10pt,itemsep=8pt,itemindent=0pt}
+
 
 % tweak paragraphs
 \setlength{\parindent}{0pt}
@@ -76,11 +77,13 @@
 %          plus 4pt means that TeX can stretch it by at most 4pt
 %          minus 2pt means that TeX can shrink it by at most 2pt
 \usepackage{titlesec}
-\titlespacing{\section}{0pt}{24pt}{0pt}
-\titlespacing{\subsection}{0pt}{1em}{1em}
-\titlespacing{\subsubsection}{0pt}{12pt}{0pt}
+
+\titlespacing{\section}{0pt}{24pt}{12pt}
+\titlespacing{\subsection}{0pt}{12pt}{12pt}
+\titlespacing{\subsubsection}{0pt}{12pt}{12pt}
+
 \titleformat{\section}{\color{CarnegiePriBlue}\Large\bfseries}{\color{CarnegiePriBlue}\thesection}{1em}{}
-\titleformat{\subsection}{\color{CarnegieSecBlue1}\large\bfseries}{\color{CarnegieSecBlue1}\thesubsection}{1em}{}
+\titleformat{\subsection}{\color{CarnegiePriBrown}\large\bfseries}{\color{CarnegiePriBrown}\thesubsection}{1em}{}
 
 % tweak equation whitespace
 %% \abovedisplayskip=12pt plus 3pt minus 9pt
@@ -90,11 +93,11 @@
 
 % width of figures for consistency
 \newlength{\figwidth}
-\setlength{\figwidth}{320mm}
+\setlength{\figwidth}{240mm}
 
 % space above figures
 \newlength{\figtopspace}
-\setlength{\figtopspace}{18pt}
+\setlength{\figtopspace}{10pt}
 
 \graphicspath{{figures/}} % Location of the graphics files
 
@@ -114,22 +117,24 @@
 {
   \color{CarnegiePriBlue} \VeryHuge
   \textbf{Model-Based Quantification of Induced Gene Expression Time Courses}    % Title
+  \vspace{5mm}
 }
-\vspace{5mm}
 
 \begin{minipage}[m]{0.08\linewidth}
-  \includegraphics[height=70mm]{sam-bfr-smiling-crop.jpg} % author photo
+  \includegraphics[height=50mm]{sam-bfr-smiling-crop.jpg} % author photo
 \end{minipage}
 \begin{minipage}[m]{0.40\linewidth}                      % Author(s)
   \color{Black}
   \Huge \textbf{Sam Hokin \& M. Kathryn Barton} \\
   \Large shokin@carnegiescience.edu
 \end{minipage}
-\begin{minipage}[m]{0.49\linewidth}
-  \includegraphics[height=70mm]{CS_plantbio_logo_horz.eps} % Carnegie DPB logo
+\hfill
+\begin{minipage}[m]{0.40\linewidth}                      % Author(s)
+  \hfill
+  \includegraphics[height=50mm]{CS_plantbio_logo_horz.eps} % Carnegie DPB logo
 \end{minipage}
 
-\vspace{10mm} % A bit of extra whitespace between the header and poster content
+\vspace{5mm} % A bit of extra whitespace between the header and poster content
 \color{CarnegiePriBlue}
 \hrulefill
 
@@ -145,7 +150,7 @@
 
 %----------------------------------------------------------------------------------------
 
-\begin{multicols}{3} % This is how many columns your poster will be broken into, a poster with many figures may benefit from less columns whereas a text-heavy poster benefits from more
+\begin{multicols}{4} % This is how many columns your poster will be broken into, a poster with many figures may benefit from less columns whereas a text-heavy poster benefits from more
 
   \color{Black} % default color
 
@@ -161,37 +166,36 @@
   %----------------------------------------------------------------------------------------
 
   {
-    \titlespacing{\section}{0pt}{0pt}{0pt}
+    \titlespacing{\section}{0pt}{0pt}{0pt} % suppress skip on very first section
     \section*{INTRODUCTION}
-
-    \textbf{We model gene expression time courses following induction of a glucocorticoid receptor-bound transcription factor into the nucleus following exposure to dexamethasone in Arabidopsis thaliana.}
-    
-    In contrast to measurement of of induced expression at a single time, resulting in a single fold-change value typically long after the induction event,
-    we model the dynamics of TF import into the nucleus followed by the transcriptional dynamics of its direct and indirect targets.
-    
-    \textbf{The model quantifies an observed time course with two rate coefficients}:
-    \begin{enumerate}
-    \item $\hat{\eta}_p$ = the normalized initial rate of rise (+) or fall (-) of target mRNA levels
-    \item $\gamma_p$ = the mRNA loss rate
-    \end{enumerate}
-    \textbf{These two processes compete to determine the final transcript fold change:} a highly-induced transcript may saturate at a low fold change if it also decays quickly,
-    while weakly-induced transcripts may rise to a high level if they have very low loss.
-    
-    \textbf{In addition, some targets exhibit ``turn-off'', or auto-regulation}. These time courses require a turn-off time, $t_{off}$, after which the mRNA level decays exponentially at $\gamma_p$.
-    
-    We present analysis of experiments with GR-TFs involved in leaf regulation: 
-    \textit{SHOOT MERISTEMLESS/STM} (AT1G65620);
-    \textit{ASYMMETRIC LEAVES 2/AS2/LBD6} (AT1G65620);
-    \textit{KANADI 1/KAN1} (AT5G16560); 
-    \textit{REVOLUTA/REV} (AT5G60690); and 
-    \textit{TINY} (AT5G25810).
-    
-    Our experiments measure expression time courses for up to two hours after DEX exposure with both RNA-seq and microarray assays.
-    Since secondary targets of the induced transcription factor are expected to rise after some delay, during which the primary transcript's protein level rises,
-    we explore the use of our model to distinguish between primary and secondary targets.
-
   }
 
+  \textbf{We model gene expression time courses following induction of a glucocorticoid receptor-bound transcription factor into the nucleus following exposure to dexamethasone in Arabidopsis thaliana.}
+  
+  In contrast to measurement of of induced expression at a single time, resulting in a single fold-change value typically long after the induction event,
+  we model the dynamics of TF import into the nucleus followed by the transcriptional dynamics of its direct and indirect targets.
+  
+  \textbf{The model quantifies an observed time course with two rate coefficients}:
+  \begin{enumerate}
+  \item $\hat{\eta}_p$ = the normalized initial rate of rise (+) or fall (-) of target mRNA levels
+  \item $\gamma_p$ = the mRNA loss rate
+  \end{enumerate}
+  \textbf{These two processes compete to determine the final transcript fold change:} a highly-induced transcript may saturate at a low fold change if it also decays quickly,
+  while weakly-induced transcripts may rise to a high level if they have very low loss.
+  
+  \textbf{In addition, some targets exhibit ``turn-off'', or auto-regulation}. These time courses require a turn-off time, $t_{off}$, after which the mRNA level decays exponentially at $\gamma_p$.
+  
+  We have conducted experiments with GR-TFs involved in leaf regulation: 
+  \textit{SHOOT MERISTEMLESS/STM} (AT1G65620);
+  \textit{ASYMMETRIC LEAVES 2/AS2/LBD6} (AT1G65620);
+  \textit{KANADI 1/KAN1} (AT5G16560); 
+  \textit{REVOLUTA/REV} (AT5G60690); and 
+  \textit{TINY} (AT5G25810).
+  
+  Our experiments measure expression time courses for up to two hours after DEX exposure with both RNA-seq and microarray assays.
+  Since secondary targets of the induced transcription factor are expected to rise after some delay, during which the primary transcript's protein level rises,
+  we explore the use of our model to distinguish between primary and secondary targets.
+  
   %----------------------------------------------------------------------------------------
   %	OBJECTIVES
   %----------------------------------------------------------------------------------------
@@ -199,15 +203,12 @@
   \section*{OBJECTIVES}
   \color{CarnegiePriBlue}  
 
-  {
-    \setlist[enumerate]{itemindent=0pt}
-    \begin{enumerate}
-    \item Model the import of the GR-TF into the nucleus after DEX exposure
-    \item Model the modified transcription of GR-TF primary targets (subscript $p$)
-    \item Model the modified transcription of GR-TF secondary targets (subscript $s$), which are primary targets of GR-TF primary targets
-    \item Compare the model-fitted rate coefficients with standard fold-change analysis
-    \end{enumerate}
-  }
+  \begin{enumerate}
+  \item Model the import of the GR-TF into the nucleus after DEX exposure
+  \item Model the modified transcription of GR-TF primary targets (subscript $p$)
+  \item Model the modified transcription of GR-TF secondary targets (subscript $s$), which are primary targets of GR-TF primary targets
+  \item Compare the model-fitted rate coefficients with standard fold-change analysis
+  \end{enumerate}
 
   \color{Black}
 
@@ -221,16 +222,18 @@
 
   %------------------------------------------------
 
+  \includegraphics[width=\figwidth]{schematic}
+
   \subsection*{Nuclear import model}
 
   Transport of a glucocorticoid receptor (GR) into the nucleus after DEX application has been measured in animal tissue by several groups.
 
-  \begin{center}\vspace{\figtopspace}
+  \begin{minipage}[t]{1.0\linewidth}
     \includegraphics[width=\figwidth]{robertson-hache-yoshikawa}
     \captionof{figure}{
       The measured nuclear GR concentration follows a saturated exponential time course, except at very low DEX concentration. Data sources in References.
     }
-  \end{center}
+  \end{minipage}
   
   The measured time courses are well described by a pair of linear ODEs:
   \begin{eqnarray*}\label{eq:rho_c_de}
@@ -238,11 +241,11 @@
     \dot{\rho_n} &=&  \nu \rho_c - \gamma_e \rho_n - \gamma_n \rho_n
   \end{eqnarray*}
   \begin{eqnarray*}
-    \rho_c &=& \text{cytoplasmic GR protein concentration} \\
-    \rho_n &=& \text{nuclear GR protein concentration} \\
-    \nu &=& \text{nuclear import rate} \\
-    \gamma_e &=& \text{nuclear export rate} \\
-    \gamma_n &=& \text{rate of loss of GR-TF from other causes}
+    \rho_c &=& \text{\small cytoplasmic GR protein concentration} \\
+    \rho_n &=& \text{\small nuclear GR protein concentration} \\
+    \nu &=& \text{\small nuclear import rate} \\
+    \gamma_e &=& \text{\small nuclear export rate} \\
+    \gamma_n &=& \text{\small rate of loss of GR-TF from other causes}
   \end{eqnarray*}
   We neglect nuclear export and loss setting $\gamma_e=0$ and $\gamma_n=0$ since those rates are slow compared to our two-hour measurement span.
   We assume that import of chimeric GR-TF is similar to the published GR import data.
@@ -255,25 +258,25 @@
     \dot{\rho_s} &=& \eta_s \rho_p  - \gamma_s \rho_s 
   \end{eqnarray*}
   \begin{eqnarray*}
-    \rho_p &=& \text{expressed mRNA/protein of a primary target of the GR-TF} \\
-    \rho_s &=& \text{expressed mRNA/protein of a secondary target of the GR-TF} \\
-    \gamma_p &=& \text{loss rate of primary mRNA/protein} \\
-    \gamma_s &=& \text{loss rate of secondary mRNA/protein} \\
-    \eta_p &=& \text{transcription rate between the GR-TF and primary target} \\
-    \eta_s &=& \text{transcription rate between the primary and secondary targets}
+    \rho_p &=& \text{\small expressed mRNA/protein of a primary target of the GR-TF} \\
+    \rho_s &=& \text{\small expressed mRNA/protein of a secondary target of the GR-TF} \\
+    \gamma_p &=& \text{\small loss rate of primary mRNA/protein} \\
+    \gamma_s &=& \text{\small loss rate of secondary mRNA/protein} \\
+    \eta_p &=& \text{\small transcription rate between the GR-TF and primary target} \\
+    \eta_s &=& \text{\small transcription rate between the primary and secondary targets}
   \end{eqnarray*}
   We assume that mRNA and protein concentrations are in fixed proportion, so that $\rho_p$ and $\rho_s$ represent measured mRNA levels as well as protein concentration.
   (This avoids two more equations and four more fit parameters accounting for translation.)
   $\gamma_p$ and  $\gamma_s$ represent loss of mRNA.
-
-  These equations can be solved analytically, and set $\nu=10 {\rm h}^{-1}$ based on the animal tissue studies (we need to measure it!).
+  
+  These equations can be solved analytically; we set $\nu=10 {\rm h}^{-1}$ based on the animal tissue studies (we need to measure it!).
   
   \subsection*{Primary target expression time course metrics}
-
-  The model provides two useful, independent time course  metrics:
+  
+  \textbf{The model provides two independent time course metrics:}
   \begin{itemize}
-    \item $\hat{\eta}_p  = \eta_p \rho_n(0) / \rho_p(0)$ characterizes the initial change of mRNA level
-    \item $\gamma_p$ characterizes the loss of mRNA
+  \item $\hat{\eta}_p  \equiv \eta_p \rho_n(0) / \rho_p(0)$ characterizes the initial change of mRNA level.
+  \item $\gamma_p$ characterizes the loss of mRNA.
   \end{itemize}
   In addition, we can calculate an asymptotic ($t\rightarrow\infty$) fold change:
   \begin{equation*}
@@ -281,12 +284,12 @@
   \end{equation*}
   The ratio $\hat{\eta_p}/\gamma_p$ therefore determines the asymptotic fold change of a transcript: \textbf{mRNA transcription and loss play equal roles in the final transcript level}.
 
-  \subsection*{Time-course expression measurements in {\it Arabidopsis thaliana}}
-
+  \subsection*{Time-course DEX-induced GR-TF expression measurements in {\it Arabidopsis thaliana}}
+  
   The five GR-TF plant lines plus WT plants (all Col-0) were grown to seedlings, and tissue was exposed to 50 $\mu$M of DEX and then flash frozen 0, 0.5, 1 and 2 hours later.
   Almost all samples had at least three biological replicates per time. RNA was extracted and assayed with the Affymetrix ATH1 microarray and Illumina HiSeq RNA-seq.
   The microarray data were analyzed using the R packages \texttt{affy} and \texttt{limma}; the RNA-seq data were analyzed using TopHat2, Cufflinks and Cuffdiff.
-  Sequences were mapped to the TAIR10 reference genome. 
+  Sequences were mapped to the TAIR10 reference genome.
 
   %----------------------------------------------------------------------------------------
   %	RESULTS 
@@ -294,21 +297,25 @@
 
   \section*{RESULTS}
 
+  
   \subsection*{Expression time courses exhibit qualitative variation}
 
   \textbf{\underline{When} you measure DE in an induced expression experiment is important!}
   
-  \begin{center}\vspace{\figtopspace}
+  \begin{minipage}[t]{1.0\linewidth}
     \includegraphics[width=\figwidth]{ZPR1-HAT4}
     \captionof{figure}{
       Expression time courses vary greatly, from strong GR-REV monotonic risers like \textit{ZPR1} to HD-ZIPII self-regulators like \textit{HAT4}. Lines represent primary target model fits
       with transcription turned off at t=30 mins for \textit{HAT4}. (\textit{HAT4} turn-off occurs some time between t=15 and 45 mins.)
     }
-  \end{center}
+  \end{minipage}
 
   \subsection*{Model parameters $\hat{\eta}_p$ and $\gamma_p$ distinguish expression time course shapes}
+
+  \textbf{The induced expression change can be large due to high transcription rate and/or low transcript loss.}
+  Asymptotic fold change differs greatly from that measured at individual times after DEX application.
   
-  \begin{center}\vspace{\figtopspace}
+  \begin{minipage}[t]{1.0\linewidth}
     \includegraphics[width=\figwidth]{ZPR1-CPuORF8-PKS4}
     \captionof{figure}{
       Distinct time course shapes result from different transcription strength vs.\ loss rate for these GR-REV targets:
@@ -316,146 +323,27 @@
       low $\hat{\eta}_p$, low $\gamma_p$ for \textit{CPuORF8}, which reaches a significant fold-change due to low loss;
       and high $\hat{\eta}_p$, high $\gamma_p$ for \textit{PKS4}, which saturates quickly due to high loss. (RNA-seq data.)
     }
-  \end{center}
+  \end{minipage}
 
   \subsection*{Down-regulation time courses are also well fit by the model}
 
-\begin{center}\vspace{\figtopspace}
+  \begin{minipage}[t]{1.0\linewidth}
     \includegraphics[width=\figwidth]{At2g41250-NPF47}
     \captionof{figure}{
-      \text{STM} has a number of strongly down-regulated targets; these two GR-STM targets are particularly well fit by the model. (RNA-seq data.)
+      \textit{STM} has a number of strongly down-regulated targets; these two GR-STM targets are particularly well fit by the model. (RNA-seq data.)
     }
-  \end{center}
+  \end{minipage}
   
+  \subsection*{The model suggests a possible down-regulated target of \textit{HAT22}}
 
-
-
-
-
-  
-
-  Three examples that exhibit very different transcriptional responses to DEX application:
-  \begin{itemize}
-  \item \textit{ZPR1} is the most strongly up-regulated target of GR-REV --- a strong, steady riser with a strong initial transition ($\kappa$ is large) leading to a large asymptotic DE level (${\rm logFC}_\infty$ is large).
-  \item \textit{CRK30} is the most strongly down-regulated target of GR-KAN in the RNA-seq series --- it is predicted to reach a larger DE level further out in time.
-  \item \textit{HAT22} is a strong autoregulating GR-REV target --- an early rise with a large $\kappa$ value is followed by ``turn-off'' after $t=0.5$ h; without turn-off, the model predicts it would reach $\rm logFC_\infty=1.8$.
-  \end{itemize}
-
-  \begin{center}
-    \begin{tabular}{c|ccc|cc}
-      \multicolumn{1}{c}{}        & \multicolumn{3}{c}{logFC} & \multicolumn{2}{c}{model} \\ 
-      \multicolumn{1}{c}{gene (assay)} & 0.5h & 1.0h & \multicolumn{1}{c}{2.0h}  & $\kappa$        & $\rm logFC_\infty$ \\
-      \midrule
-      \textit{ZPR1}  (microarray) & 2.09 & 3.29 & 3.71         & 122 $\rm h^{-2}$ & 4.06 \\
-      \textit{CRK30} (RNA-seq)    & -0.72 & -1.93 & -2.51      & -15 $\rm h^{-2}$ & -3.01 \\
-      \textit{HAT22} (microarray) & 1.53 & $\times$ & $\times$ &  96 $\rm h^{-2}$ & 1.77 \\
-    \end{tabular}
-    \captionof{table}{
-      \texttt{limma} and Cuffdiff DE levels along with model-derived metrics $\kappa$ and $\rm logFC_\infty$.
-    }
-  \end{center}
-
-  Intermediate DE values, given by logFC, depend on the time of measurement while $\kappa$ and ${\rm logFC}_\infty$ characterize the entire time course.
-
-  \subsection*{Early-peaking primary transcripts are well fit by mid-course transcription turn-off in the model}
-
-  When $\gamma_n=0$, only group L time courses can be fit by the model with constant $\eta_p$. Group E and M genes appear to exhibit transcription
-  ``turn-off'' --- after a certain amount of time (or beyond a certain level of expression) transcription of those genes' mRNA ``turns off'' and the subsequent transcript level
-  drops as $e^{-\gamma_p t}$. We model transcription turn-off by setting $\eta_p=0$ at $t=0.5$h for E time courses and $t=1.0$h for M time courses.
-
-  \begin{center}\vspace{\figtopspace}
-    \includegraphics[width=\figwidth]{hdzip}
+  \begin{minipage}[t]{1.0\linewidth}
+    \includegraphics[width=\figwidth]{HAT22-ERDJ3A}
     \captionof{figure}{
-      Many early turn-off genes are found in the HD-ZIP family, especially in the HD-ZIPII class, shown here.
+      \textit{HAT22} is a self-regulating target of \textit{REV} which is also a TF. \textit{ERDJ3A} is a possible \textit{down}-regulated target of \textit{HAT22} which returns
+      to its WT level after \textit{HAT22} turns off. (Microarray data.)
     }
-  \end{center}
+  \end{minipage}
 
-  The rapidity of turn-off of \textit{HAT9} and \textit{HAT22} may indicate that they play a leading role in the HD-ZIPII autoregulatory network [Ohgishi. et al.].
-
-  \subsection*{Conventional DE and model fit confidence measures are correlated}
-
-  For microrarray/\texttt{limma} and RNA-seq/Cuffdiff DE measurements, $p$-values and FDR-adjusted $q$-values are the standard measures of confidence.
-  One typically assumes that $q<0.05$ represents a 95\% probability that the measured DE is real and not a chance occurrence.
-  
-  In our model fits, the experimental data points, one per sample (3 reps $\times$ 4 times = 12 total),
-  are individually fit, without weighting, by minimizing the variance between data and model values using the core R nonlinear minimization routine \texttt{nlm}. We then compute the standard $r^2$ coefficient
-  of determination to quantify the quality of the fit.
-  \begin{itemize}
-  \item DE measurements are taken at a single time relative to the $t=0$ base: three independent logFC, $p$ and $q$ values result for $t=0.5$, 1 and 2 h, using six data per measurement, reusing the $t=0$ base data each time.
-  \item The model fits one solution to all twelve data, and is therefore subject to variation of all, not half, of the data
-  \item The model counts the $t=0$ data equally with the other data.
-  \end{itemize}
-  The model fit $r^2$ value, therefore, provides an independent measure of DE significance which spans the entire time course in a statistically balanced fashion.
-
-  \begin{center}\vspace{\figtopspace}
-    \includegraphics[width=10in,height=5in]{p-vs-r2}
-    \captionof{figure}{
-      Model $r^2$ values correlate with the geometric mean of the three $p$-values from \texttt{limma} DE analysis of the 22,585 GR-REV microarray transcripts which result in a model fit of any quality.
-      The horizontal line shows the geometric mean of $p$-values for which $q=0.05$, representing the boundary of significant \texttt{limma}-determined DE at the $q<0.05$ level.
-    }
-  \end{center}
-
-  The microarray \texttt{limma} $p$ and model-fit $r^2$ values correlate, and we have chosen $r^2>0.6$ as the significance
-  level for the model fits, covering 86\% of the $q<0.05$ transcripts. A majority of significant DE time courses meet
-  this model fit level in both microarray and RNA-seq series, boosting confidence in the validity of the model.
-
-  \subsection*{Secondary targets are suggested by model fits and transcriptional response across four GR-TF lines}
-
-  GR-REV:\textit{AHP4} rises very slowly, requiring $\gamma_p<0$ in the model, which is unphysical.
-  We model the time course of \textit{AHP4} as a \textit{secondary} target with $\gamma_s>0$, and search for candidate primary targets in the four GR-TF lines which regulate it.
-  If \textit{AHP4} is strictly a secondary target in the GR-TF lines in which it exhibits differential expression,
-  then the corresponding primary target should also exhibit DE in those and only those lines. \textit{AHP4} is an up-regulated group L gene in GR-KAN, GR-REV and GR-STM, further suggesting that it is a secondary,
-  or farther downstream target.
-    
-  From the RNA-seq series: 44 other genes show all up- or all down-DE in GR-KAN, GR-REV and GR-STM and none in GR-AS2.
-  Of these, model fits using \textit{AHP4} as the secondary target lead to:
-  \begin{itemize}
-  \item 10 genes as primary targets of GR-REV with $r^2>0.6$ and $\gamma_p,\gamma_s>0$
-  \item 9 genes as primary targets of GR-STM with $r^2>0.6$ and $\gamma_p,\gamma_s>0$
-  \item 5 genes common to the above GR-REV and GR-STM selections
-  \end{itemize}
-  The RNA-seq GR-KAN:\textit{AHP4} data variance is too high to produce good model fits.
-
-  From the microarray series, model fits to the five genes above as primaries which target \textit{AHP4} result in
-  three candidates with $r^2>0.6$ and $\gamma_p,\gamma_s>0$: \textit{CRK22}, \textit{JKD} and \textit{GT2L} (At5g28300).
-
-  %% \begin{center}
-  %%   \begin{tabular}{c|ccc|ccc|ccc|ccc}
-  %%     \multicolumn{1}{c}{\textbf{RNA-seq}} & \multicolumn{3}{c}{GR-AS2} & \multicolumn{3}{c}{GR-KAN}   & \multicolumn{3}{c}{GR-REV}       & \multicolumn{3}{c}{GR-STM}    \\ 
-  %%     \multicolumn{1}{c}{Cuffdiff} & 0.5 & 1.0 & \multicolumn{1}{c}{2.0} & 0.5 & 1.0 & \multicolumn{1}{c}{2.0} & 0.5 & 1.0 & \multicolumn{1}{c}{2.0} & 0.5 & 1.0 & \multicolumn{1}{c}{2.0} \\
-  %%     \bottomrule
-  %%     \textit{CRK22} & $\times$&$\times$&$\times$ & $\times$&$\times$&-1.36 & $\times$&$\times$&-1.32 & $\times$&$\times$&-0.96   \\
-  %%     \textit{JKD}   & $\times$&$\times$&$\times$ & $\times$&$\times$&-0.88 & $\times$&$\times$&-0.95 & $\times$&$\times$&-0.60   \\
-  %%     \textit{GT2L}  & $\times$&$\times$&$\times$ & $\times$&$\times$&-0.70 & $\times$&$\times$&-0.79 & $\times$&-1.09&-0.97 \\
-  %%     \textit{\textbf{AHP4}} & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & \textbf{0.76}  & $\times$ & \textbf{1.14} & \textbf{2.25} & $\times$ & \textbf{1.03} & \textbf{1.52} \\
-  %%   \end{tabular}
-  %% \end{center}
-  %% \begin{center}
-  %%   \begin{tabular}{c|ccc|cc|ccc}
-  %%     \multicolumn{1}{c}{\textbf{microarray}} & \multicolumn{3}{c}{GR-AS2} & \multicolumn{2}{c}{GR-KAN}   & \multicolumn{3}{c}{GR-REV}    \\ 
-  %%     \multicolumn{1}{c}{\texttt{limma}} & 0.5 & 1.0 & \multicolumn{1}{c}{2.0} & 0.5 & \multicolumn{1}{c}{1.0} & 0.5 & 1.0 & \multicolumn{1}{c}{2.0} \\
-  %%     \bottomrule
-  %%     \textit{CRK22} & $\times$ & $\times$ & $\times$ & $\times$ & -0.96 & $\times$ & $\times$ & $\times$  \\
-  %%     \textit{JKD}   & $\times$ & $\times$ & $\times$ & $\times$ & -0.81 & $\times$ & $\times$ & $\times$  \\
-  %%     \textit{GT2L}  & $\times$ & $\times$ & $\times$ & -0.73 & -0.85    & $\times$ & $\times$ & $\times$  \\
-  %%     \textit{\textbf{AHP4}} & $\times$ & $\times$ & $\times$  & $\times$ & $\times$ & $\times$ & \textbf{1.01} & \textbf{2.06} \\
-  %%   \end{tabular}
-  %%   \captionof{table}{
-  %%     logFC values for three putative targets of \textit{KAN}, \textit{REV} and \textit{STM} which target \textit{AHP4}.
-  %%   }
-  %% \end{center}
-
-  \begin{center}\vspace{\figtopspace}
-    \includegraphics[width=\figwidth]{AHP4}
-    \captionof{figure}{
-      Three genes are well simulated as down-regulated targets of \textit{KAN}, \textit{REV} and \textit{STM}, which in turn down-regulate \textit{AHP4}.
-    }
-  \end{center}
-
-  We regard these three genes as candidate primary targets of \textit{KAN}, \textit{REV} and \textit{STM}, which, in turn, target \textit{AHP4}.
-  (One of these three, \textit{GT2L}, is a member of the Trihelix TF family, but \textit{AHP4} has not been reported as a target.)
-  Also note that the three candidate primary targets are \textit{down}-regulated in GR-KAN, GR-REV and GR-STM lines.
-  This suggests that they \textit{repress} \textit{AHP4}, which then overexpresses its mRNA as their expression is reduced by the induced TF.
   
   %----------------------------------------------------------------------------------------
   %	CONCLUSIONS
@@ -463,29 +351,23 @@
 
   \section*{CONCLUSIONS}
   \color{CarnegiePriBlue}
-
+  
   \begin{enumerate}
-  \item DEX-induced GR-TF transcription time courses can be modeled with a set of linear ODEs with parameters ($\gamma_p$,$\eta_p$) describing the
-    primary target response and ($\gamma_s$,$\eta_s$) describing the secondary target response.
-  \item Model fits use data in a balanced fashion, rather than the overemphasis of $t=0$ data in time-wise DE measurements.
-  \item Model-determined metrics $\kappa$ and ${\rm logFC}_\infty$ characterize the primary target response in a time-independent manner, as opposed to
-    misleading single-time DE measurements.
-  \item The model simulates transcription turn-off by setting $\eta_p$ or $\eta_s$ to 0 at an appropriate time, matching autoregulated genes in the HD-ZIPII family.
+  \item DEX-induced expression of GR-TF targets exhibits a variety of time courses, requiring better quantification than single-time fold change.
+  \item Time courses can be fit by a basic ODE model with three shape parameters describing transcription strength, transcript loss and, when needed, turn-off.
   \item The model simulates primary and secondary transcriptional responses, supporting target discovery and inference of gene regulatory networks.
   \end{enumerate}
 
-  \color{Black}
-
   %----------------------------------------------------------------------------------------
-  %	FORTHCOMING RESEARCH
+  %	FURTHER RESEARCH
   %----------------------------------------------------------------------------------------
 
-  \section*{Forthcoming Research}
-
+  \section*{Further Research}
+  
   \begin{enumerate}
   \item Improve model to make robust fits for ``black box'' analysis, perhaps in a Web application, with data and fit diagnostics
-  \item Measure tighter time course of selected GR-TFs and targets using qPCR
-  \item Measure GR-TF nuclear import and mRNA accumulation using flourescent probes
+  \item Measure tighter time course of selected GR-TFs and targets using both RNA-seq and qPCR
+  \item Measure GR-TF nuclear import using flourescent probes
   \item Measure mRNA induction in real time with CRISPRi activation?
   \end{enumerate}
 
@@ -502,9 +384,8 @@
   %----------------------------------------------------------------------------------------
 
   \section*{Acknowledgements}
+  \small This research was funded by National Science Foundation grant \#0929413.
   
-  \noindent This research was funded by National Science Foundation grant \#0929413.
-
   
 \end{multicols}
 \end{document}
