@@ -168,20 +168,20 @@
 \voffset -1in
 \hoffset -1in
 
-\setlength{\headheight}{0 cm}
-\setlength{\headsep}{0 cm}
-\setlength{\topmargin}{3 cm}     %% 3 cm for unprintable at top WAS 5
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\setlength{\topmargin}{1in}     %% 3 cm for unprintable at top WAS 5
 %% (landscape) + 2 cm from border
-\setlength{\oddsidemargin}{1.0in} %% 3 cm for unprintable at left WAS 5
+\setlength{\oddsidemargin}{1in} %% 3 cm for unprintable at left WAS 5
 %% (landscape) + 2 cm from border
-\setlength{\topskip}{0 cm}
+\setlength{\topskip}{0in}
 
 \input{a0size.sty}
 
 \renewcommand{\tiny}{\fontsize{12}{14}\selectfont}
 \renewcommand{\scriptsize}{\fontsize{14}{18}\selectfont}   
 \renewcommand{\footnotesize}{\fontsize{18}{22}\selectfont}
-\renewcommand{\small}{\fontsize{22}{25}\selectfont}
+\renewcommand{\small}{\fontsize{20}{24}\selectfont}
 \renewcommand{\normalsize}{\fontsize{28}{36}\selectfont} % was 24 30
 \renewcommand{\large}{\fontsize{32}{38}\selectfont}
 \renewcommand{\Large}{\fontsize{36}{45}\selectfont}

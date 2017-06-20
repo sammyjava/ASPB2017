@@ -101,6 +101,9 @@
 
 \graphicspath{{figures/}} % Location of the graphics files
 
+%% % DEBUG: overlay a grid to view spacing
+%% \usepackage[grid,gridcolor=red!20,subgridcolor=green!20,gridunit=in]{eso-pic}
+
 \begin{document}
 
 %----------------------------------------------------------------------------------------
@@ -114,11 +117,7 @@
 % The widths of these boxes can be easily edited to accommodate your content as you see fit
 % Note: no line breaks between minipage environments!
 
-{
-  \color{CarnegiePriBlue} \VeryHuge
-  \textbf{Model-Based Quantification of Induced Gene Expression Time Courses}    % Title
-  \vspace{5mm}
-}
+\textbf{\color{CarnegiePriBlue} \VeryHuge Model-Based Quantification of Induced Gene Expression Time Courses}    % Title
 
 \begin{minipage}[m]{0.08\linewidth}
   \includegraphics[height=50mm]{sam-bfr-smiling-crop.jpg} % author photo
@@ -170,9 +169,9 @@
     \section*{INTRODUCTION}
   }
 
-  \textbf{We model gene expression time courses following induction of a glucocorticoid receptor-bound transcription factor into the nucleus following exposure to dexamethasone in Arabidopsis thaliana.}
+  \textbf{We model gene expression time courses following induction of a glucocorticoid receptor-bound transcription factor into the nucleus due to exposure to dexamethasone in Arabidopsis thaliana.}
   
-  In contrast to measurement of of induced expression at a single time, resulting in a single fold-change value typically long after the induction event,
+  In contrast to measurement of induced expression at a single time, resulting in a single fold-change value typically long after the induction event,
   we model the dynamics of TF import into the nucleus followed by the transcriptional dynamics of its direct and indirect targets.
   
   \textbf{The model quantifies an observed time course with two rate coefficients}:
@@ -192,8 +191,8 @@
   \textit{REVOLUTA/REV} (AT5G60690); and 
   \textit{TINY} (AT5G25810).
   
-  Our experiments measure expression time courses for up to two hours after DEX exposure with both RNA-seq and microarray assays.
-  Since secondary targets of the induced transcription factor are expected to rise after some delay, during which the primary transcript's protein level rises,
+  Our experiments measure transcript time courses for up to two hours after DEX exposure with both RNA-seq and microarray assays.
+  Since secondary targets of the induced transcription factor are expected to rise after some delay, during which the primary transcript's protein level is rising,
   we explore the use of our model to distinguish between primary and secondary targets.
   
   %----------------------------------------------------------------------------------------
@@ -236,7 +235,7 @@
   \end{minipage}
   
   The measured time courses are well described by a pair of linear ODEs:
-  \begin{eqnarray*}\label{eq:rho_c_de}
+  \begin{eqnarray*}
     \dot{\rho_c} &=& -\nu \rho_c + \gamma_e \rho_n \\
     \dot{\rho_n} &=&  \nu \rho_c - \gamma_e \rho_n - \gamma_n \rho_n
   \end{eqnarray*}
@@ -255,7 +254,7 @@
   We model altered transcription of target mRNA due to DEX-induced import of the GR-TF with a set of coupled ODEs:
   \begin{eqnarray*}
     \dot{\rho_p} &=& \eta_p \rho_n  - \gamma_p \rho_p  \\
-    \dot{\rho_s} &=& \eta_s \rho_p  - \gamma_s \rho_s 
+    \dot{\rho_s} &=& \eta_s \rho_p  - \gamma_s \rho_s
   \end{eqnarray*}
   \begin{eqnarray*}
     \rho_p &=& \text{\small expressed mRNA/protein of a primary target of the GR-TF} \\
@@ -269,16 +268,16 @@
   (This avoids two more equations and four more fit parameters accounting for translation.)
   $\gamma_p$ and  $\gamma_s$ represent loss of mRNA.
   
-  These equations can be solved analytically; we set $\nu=10 {\rm h}^{-1}$ based on the animal tissue studies (we need to measure it!).
+  These equations can be solved analytically; we set $\nu=10 {\rm h}^{-1}$ based on the animal tissue studies (\textit{we need to measure it!}).
   
   \subsection*{Primary target expression time course metrics}
   
   \textbf{The model provides two independent time course metrics:}
   \begin{itemize}
-  \item $\hat{\eta}_p  \equiv \eta_p \rho_n(0) / \rho_p(0)$ characterizes the initial change of mRNA level.
-  \item $\gamma_p$ characterizes the loss of mRNA.
+  \item $\hat{\eta}_p  \equiv \eta_p \rho_n(0) / \rho_p(0)$ characterizes the \textit{initial change} of mRNA level.
+  \item $\gamma_p$ characterizes the \textit{loss} of mRNA.
   \end{itemize}
-  In addition, we can calculate an asymptotic ($t\rightarrow\infty$) fold change:
+  In addition, we derive an asymptotic $t$$\rightarrow$$\infty$ fold change:
   \begin{equation*}
     {\rm logFC}_\infty \equiv \lim_{t \to \infty} \log_2\frac{\rho_p(t)}{\rho_p(0)} = \log_2\left(1 + \frac{\hat{\eta}_p}{\gamma_p} \frac{\rho_c(0)}{\rho_n(0)} \right)
   \end{equation*}
@@ -286,8 +285,8 @@
 
   \subsection*{Time-course DEX-induced GR-TF expression measurements in {\it Arabidopsis thaliana}}
   
-  The five GR-TF plant lines plus WT plants (all Col-0) were grown to seedlings, and tissue was exposed to 50 $\mu$M of DEX and then flash frozen 0, 0.5, 1 and 2 hours later.
-  Almost all samples had at least three biological replicates per time. RNA was extracted and assayed with the Affymetrix ATH1 microarray and Illumina HiSeq RNA-seq.
+  The WT and five GR-TF Col-0 plant lines were grown to seedlings, and tissue was exposed to 50 $\mu$M of DEX and flash frozen 0, 0.5, 1 and 2 hours later.
+  Almost all GR-TF samples had three biological replicates per time (WT had six). RNA was extracted and assayed with the Affymetrix ATH1 microarray and Illumina HiSeq RNA-seq.
   The microarray data were analyzed using the R packages \texttt{affy} and \texttt{limma}; the RNA-seq data were analyzed using TopHat2, Cufflinks and Cuffdiff.
   Sequences were mapped to the TAIR10 reference genome.
 
@@ -298,7 +297,7 @@
   \section*{RESULTS}
 
   
-  \subsection*{Expression time courses exhibit qualitative variation}
+  \subsection*{Time courses exhibit qualitative variation}
 
   \textbf{\underline{When} you measure DE in an induced expression experiment is important!}
   
@@ -310,7 +309,7 @@
     }
   \end{minipage}
 
-  \subsection*{Model parameters $\hat{\eta}_p$ and $\gamma_p$ distinguish expression time course shapes}
+  \subsection*{Model parameters $\hat{\eta}_p$ and $\gamma_p$ distinguish time course shapes}
 
   \textbf{The induced expression change can be large due to high transcription rate and/or low transcript loss.}
   Asymptotic fold change differs greatly from that measured at individual times after DEX application.
@@ -325,21 +324,21 @@
     }
   \end{minipage}
 
-  \subsection*{Down-regulation time courses are also well fit by the model}
+  \subsection*{Down-regulated transcripts are also well fit}
 
   \begin{minipage}[t]{1.0\linewidth}
     \includegraphics[width=\figwidth]{At2g41250-NPF47}
     \captionof{figure}{
-      \textit{STM} has a number of strongly down-regulated targets; these two GR-STM targets are particularly well fit by the model. (RNA-seq data.)
+      \textit{GR-STM} has many down-regulated targets; these two are particularly well fit by the model. (RNA-seq data.)
     }
   \end{minipage}
   
-  \subsection*{The model suggests a possible down-regulated target of \textit{HAT22}}
+  \subsection*{Example: A down-regulated target of \textit{HAT22}?}
 
   \begin{minipage}[t]{1.0\linewidth}
     \includegraphics[width=\figwidth]{HAT22-ERDJ3A}
     \captionof{figure}{
-      \textit{HAT22} is a self-regulating target of \textit{REV} which is also a TF. \textit{ERDJ3A} is a possible \textit{down}-regulated target of \textit{HAT22} which returns
+      \textit{HAT22} is a self-regulating target of \textit{REV} which is also a TF. \textit{ERDJ3A} may be a \textit{down}-regulated target of \textit{HAT22} which returns
       to its WT level after \textit{HAT22} turns off. (Microarray data.)
     }
   \end{minipage}
@@ -365,9 +364,9 @@
   \section*{Further Research}
   
   \begin{enumerate}
-  \item Improve model to make robust fits for ``black box'' analysis, perhaps in a Web application, with data and fit diagnostics
-  \item Measure tighter time course of selected GR-TFs and targets using both RNA-seq and qPCR
-  \item Measure GR-TF nuclear import using flourescent probes
+  \item Improve model to make robust fits for ``black box'' analysis, perhaps in a Web application
+  \item Study tighter time course of selected GR-TFs and targets using both RNA-seq and qPCR
+  \item Measure GR-TF nuclear import using flourescent probes or other technique
   \item Measure mRNA induction in real time with CRISPRi activation?
   \end{enumerate}
 
@@ -383,8 +382,7 @@
   %	ACKNOWLEDGEMENTS
   %----------------------------------------------------------------------------------------
 
-  \section*{Acknowledgements}
-  \small This research was funded by National Science Foundation grant \#0929413.
+  {\small This research was funded by National Science Foundation grant \#0929413.}
   
   
 \end{multicols}
